@@ -71,7 +71,7 @@ if(input2.equals("admin")&& input3.equals("admin")){
               
 	      case "/list":
                   
-	  return   showList();
+	  return   showListLibrarian();
 				
 	       case "/edit":
                    
@@ -110,7 +110,7 @@ if(input2.equals("admin")&& input3.equals("admin")){
         return "  librarian added";
     }
 
-    private static String showList() {
+    private static String showListLibrarian() {
         String result="";
         for(int i=0;i<librarians.size();i++){
             librarian l=librarians.get(i);
@@ -125,25 +125,25 @@ if(input2.equals("admin")&& input3.equals("admin")){
 
     private static String editList() {
          System.out.println("enter name ");
-        String name=sc.nextLine();
+        String name=sc.next();
         int toEditeIndex=-1;
          for(int i=0;i<librarians.size();i++){
             librarian l=librarians.get(i);
             if(l.name.equals(name)){
                  toEditeIndex=i;
-                break;
+               // break;
             }
          }
          if( toEditeIndex==-1){
              return "user not found";
          }else{
-            System.out.println("enter usernam");
+            System.out.println("enter newName");
         String newName=sc.next();
-         System.out.println("enter Email");
+         System.out.println("enter newEmail");
         String newEmail=sc.next();
-         System.out.println("enter password");
+         System.out.println("enter newPassword");
         String newPassword=sc.next();
-         System.out.println("enter mobile");
+         System.out.println("enter newMobile");
         int newMobile=sc.nextInt();
         librarians.get(toEditeIndex).name=newName;
         librarians.get(toEditeIndex).email=newEmail;
@@ -162,21 +162,23 @@ if(input2.equals("admin")&& input3.equals("admin")){
 
     private static String delet() {
         System.out.println("enter name ");
-        String name2=sc.nextLine();
+        String name2=sc.next();
+          System.out.println("enter name "+name2);
         int toRemoveIndex=-1;
          for(int i=0;i<librarians.size();i++){
             librarian l=librarians.get(i);
             if(l.name.equals(name2)){
                 toRemoveIndex=i;
-                 librarians.remove(toRemoveIndex);
+                // librarians.remove(toRemoveIndex);
                 break;
             }
          }
-         if(toRemoveIndex==-1){
-             return "user not found";
+         if(toRemoveIndex==-1)
+         {
+            return "user not found";
          }else{
              librarians.remove(toRemoveIndex);
-        return" user removed";
+            return " user removed";
     }
     }
     private static String help() {
@@ -193,7 +195,7 @@ if(input2.equals("admin")&& input3.equals("admin")){
 
     private static String search() {
           System.out.println("enter name ");
-        String name=sc.nextLine();
+        String name=sc.next();
         int toShowIndex=-1;
          for(int i=0;i<librarians.size();i++){
             librarian l=librarians.get(i);

@@ -21,6 +21,12 @@ public class librarian {
 public String getDetails(){
     return name+":"+email+":"+mobile+":"+password;
 }
+
+    @Override
+    public String toString() {
+       
+             return name+":"+email+":"+mobile+":"+password;
+    }
   
 }
     
