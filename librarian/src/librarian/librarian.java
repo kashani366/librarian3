@@ -18,6 +18,7 @@ public class librarian {
         this.password = password;
         this.mobile = mobile;
     }
+ 
 public String getDetails(){
     return name+":"+email+":"+mobile+":"+password;
 }
@@ -27,6 +28,6 @@ public String getDetails(){
        
              return name+":"+email+":"+mobile+":"+password;
     }
-  
+
 }
     
