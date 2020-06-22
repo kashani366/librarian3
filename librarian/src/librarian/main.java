@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package librarian;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,8 +15,8 @@ private  static ArrayList<book> books=new ArrayList<book>();
       private static   boolean isAlive2=true;
 
         public static void main(String[] args) {
-            System.out.println("WELCOME TO elibrari");
-            System.out.println("/help to start");
+            System.out.println("==WELCOME TO elibrary==");
+          //  System.out.println("/help to start");
        
             while(isAlive){
                 System.out.println("are you admin?y/n");
@@ -27,13 +26,14 @@ private  static ArrayList<book> books=new ArrayList<book>();
                    
                }
               else{
+                   if(input.equals("n"))
                   
             
                    
         librarianpanel(input);
                 
               }
-                  
+                 break; 
             }
         }
            
@@ -41,67 +41,66 @@ private  static ArrayList<book> books=new ArrayList<book>();
           
 
     private static void checkAdmin(String input) {
-        System.out.println("enter AdminEmail");
+        System.out.println("enter adminEmail");
         String input2=sc.next();
           System.out.println("enter password");
 String input3=sc.next();
-if(input2.equals("admin")&& input3.equals("admin")){
+if(input2.equals("admin@yahoo.com")&& input3.equals("admin")){
  
   while(isAlive2){
   String result=  rout(input2);
       System.out.println(""+result);
     isAlive=false;}
 }else
-{System.out.println("wrong admin");
+{System.out.println("Wrong input");
     }
 
 }
      private static void librarianpanel(String input){
-        /*  System.out.println("are you registe?y/n");
-          String input5=sc.next();
-         */
-     //   if(input.equals("y")){
+    
               String result= showmenu();
               System.out.println(""+result);
-        //  }
+    
      }
     
     public static String rout(String input){
       
-        System.out.println("enter your chosse./help to help you");
+        System.out.println("enter your Selection.press 5  to help you");
   
        
-        String input2=sc.next();
-        input2=input2.toLowerCase();
+        int input2=sc.nextInt();
+       // input2=input2.toLowerCase();
         switch (input2) {
-            case "/add":
+            case 1:
 	 
 	      return AddLibrarian();
               
-	      case "/list":
+	      case 2:
                   
-	  return   showListLibrarian();
+	  return   showLibrarianList();
 				
-	       case "/edit":
+	       case 3:
                    
-		return	editListLibrarian();
+		return	editLibrarian();
 				
-		case "/delet":
+		case 4:
 				// editUser();
 	       return deletLibrarian();
                
-                case "/help":
+                case 5:
                      return help();
-                      case "/exit":
+                      case 6:
                      return exit();
-                       case "/search":
+                       case 7:
                      return searchLibrarian();
-                       case "/addbook":
+                       case 8:
                            return addBook();
-                       case "/showlistbook":
-                           return showListBook();
-                           case "/showedittbook":
-                           return showEditBook();    
+                       case 9:
+                           return showBookList();
+                           case 10:
+                           return editBook(); 
+                           case 11:
+                               return searchbook();
 			default:
 			return	wrongInput();
 				
@@ -125,7 +124,7 @@ if(input2.equals("admin")&& input3.equals("admin")){
         return "  librarian added";
     }
 
-    private static String showListLibrarian() {
+    private static String   showLibrarianList() {
         String result="";
         for(int i=0;i<librarians.size();i++){
             librarian l=librarians.get(i);
@@ -138,7 +137,7 @@ if(input2.equals("admin")&& input3.equals("admin")){
        
     }
 
-    private static String editListLibrarian() {
+    private static String editLibrarian() {
          System.out.println("enter name ");
         String name=sc.next();
         int toEditeIndex=-1;
@@ -197,10 +196,16 @@ if(input2.equals("admin")&& input3.equals("admin")){
     }
     }
     private static String help() {
-       return "/add ---add new librarian\n"
-               + "/viewList--to show librarians\n"
-               + ""
-               + "" ;
+       return   "1.--add new librarian\n"
+               + "2.-- show librarians\n"
+               + "3.--edit librarian\n"
+               + "4.--delet librarian\n"
+               + "5.--help you\n"
+               + "6.--to exit\n"
+               + "7--search librarian\n"
+               + "8.--addbook\n"
+               + "9.--showbooklist\n"
+               + "10.--editbook" ;
     }
 
     private static String exit() {
@@ -245,7 +250,7 @@ else
         return "  book added";
     }
 
-    private static String showListBook() {
+    private static String showBookList() {
           String result="";
         for(int i=0;i<books.size();i++){
            book l=books.get(i);
@@ -258,10 +263,36 @@ else
       
     }
 
-    private static String showEditBook() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static String editBook() {
+         System.out.println("enter name ");
+        String name=sc.next();
+        int toEditeIndex=-1;
+         for(int i=0;i<books.size();i++){
+          book b=books.get(i);
+            if(b.name.equals(name)){
+                 toEditeIndex=i;
+               // break;
+            }
+         }
+         if( toEditeIndex==-1){
+             return "book not found";
+         }else{
+            System.out.println("enter newName");
+        String newName=sc.next();
+         System.out.println("enter newAuthor");
+        String newAuthor=sc.next();
+         System.out.println("enter newpublisher");
+        String newpublisher=sc.next();
+         System.out.println("enter newquantity");
+        int newquantity=sc.nextInt();
+        books.get(toEditeIndex).name=newName;
+         books.get(toEditeIndex).author=newAuthor;
+         books.get(toEditeIndex).publisher=newpublisher;
+         books.get(toEditeIndex).quantitiy=newquantity;
+        
+        return" book edited";
     }
-    
+    }
 
     private static String checklibrarian() {
    isAlive=false;
@@ -287,24 +318,26 @@ else
     }
 
     private static String showmenu() {
-    
+    isAlive=false;
         System.out.println("/showlist:viw list book");
        System.out.println("/issu:to issu book");
         
         String input6=sc.next();
         input6=input6.toLowerCase();
          switch (input6) {
-             case "showlist":
+             case "/showlist":
                  return showlist();
-             case "issu":
+             case "/issu":
                  return issu();
          }
         return "";
     }
 
     private static String showlist() {
-    book c=new book("java","man","man",12);
+    book c=new book("golestan","saadi","ghoghnos",12);
        books.add(c);
+        book a=new book("bostan","saadi","ghoghnos",50);
+       books.add(a);
       String result="";
         for(int i=0;i<books.size();i++){
            book l=books.get(i);
@@ -315,19 +348,27 @@ else
        return result;
     }
 
-    private static String issu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
+
+    private static String searchbook() {
+   System.out.println("enter name ");
+        String name=sc.next();
+        int toShowIndex=-1;
+         for(int i=0;i<books.size();i++){
+           book l=books.get(i);
+            if(l.name.equals(name)){
+               toShowIndex=i;
+                break;
+            }
+         }
+    if(toShowIndex==-1)
+    {
+        return "book not found";
+    }
+else
+    {
+         return books.get(toShowIndex).toString();
+    }
     }
 
 }
-
-  /* private static void   librarianpanel(String input) {
-        System.out.println("are you registe?y/n");
-        String input4=sc.next();
-        switch(input4){
-            case "y":
-             return  showListBook();
-             default:
-                 return "ss";
-                
-        }*/

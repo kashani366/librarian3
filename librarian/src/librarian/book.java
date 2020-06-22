@@ -37,13 +37,13 @@ public class book {
         this.quantitiy = quantitiy;
     }
     public String getDetails(){
-    return name+":"+author+":"+publisher+":"+publisher;
+    return name+": "+author+": "+publisher+": "+publisher+": "+quantitiy;
 }
 
     @Override
     public String toString() {
        
-             return name+":"+author+":"+publisher+":"+publisher;
+             return name+":"+author+":"+publisher+":"+publisher+":"+quantitiy;
     }
   
 
